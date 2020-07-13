@@ -13,7 +13,6 @@ with open('bulk_whois_results.csv', 'w+', newline="") as outfile:
 result_list = []
 with open('domain_list', 'r') as f:
     for domain in f.readlines():
-        # whois_csv(domain.strip())
         whois_data = pythonwhois.get_whois(domain.strip())
         try:
             eDate = ' '.join(str(x) for x in whois_data['expiration_date'])
@@ -29,7 +28,7 @@ with open('domain_list', 'r') as f:
 
 with open('bulk_whois_results.csv', 'a+', newline="") as outfile:
     w = csv.writer(outfile)
-    for i in result_list:  # eg list or dictionary i'm assuming a list structure
+    for i in result_list:  
         w.writerow([
             i['domain'],
             i['registrar'],
